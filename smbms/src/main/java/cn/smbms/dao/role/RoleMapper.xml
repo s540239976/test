@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.smbms.dao.role.RoleMapper">
+    <insert id="addRole">
+        insert into smbms.smbms_role(roleCode, roleName, createdBy, creationDate, modifyBy, modifyDate)
+        values (#{roleCode},#{roleName},#{createdBy},#{creationDate},#{modifyBy},#{modifyDate});
+    </insert>
+    <update id="modifyRole">
+        update smbms.smbms_role
+        set roleName = #{roleName},modifyBy = #{modifyBy},modifyDate = #{modifyDate}
+        where id = #{id}
+    </update>
+    <delete id="delete">
+        delete from smbms_role where id = #{id}
+    </delete>
+
+    <select id="getRoleList" resultType="cn.smbms.pojo.Role">
+        select * from smbms_role
+    </select>
+    <select id="queryRoleByName" resultType="java.lang.Integer">
+        select *from smbms.smbms_role where roleCode = #{roleName}
+    </select>
+    <select id="queryRoleById" resultType="cn.smbms.pojo.Role">
+        select *from smbms_role where id = #{id}
+    </select>
+</mapper>
